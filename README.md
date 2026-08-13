@@ -15,6 +15,15 @@ Currently supports **250 target portals** across 3 countries:
 - **FIPS 204 (ML-DSA)** — Digital Signatures, replaces RSA/ECDSA
 - **FIPS 205 (SLH-DSA)** — Hash-based Signatures
 
+## ⚠️ Ethical Use
+
+This scanner:
+- Uses **passive TLS inspection** only (no exploitation or fuzzing)
+- Makes standard **HTTPS HEAD requests** and raw **TLS ClientHello probes**
+- Is intended for **educational and research** purposes
+- Reports publicly observable server behavior only
+- Should only be used on targets you are **authorized to scan**
+
 ---
 
 ## 🚀 Quick Start
@@ -330,14 +339,7 @@ with oqs.KeyEncapsulation("ML-KEM-768") as kem:
 
 ---
 
-## ⚠️ Ethical Use
 
-This scanner:
-- Uses **passive TLS inspection** only (no exploitation or fuzzing)
-- Makes standard **HTTPS HEAD requests** and raw **TLS ClientHello probes**
-- Is intended for **educational and research** purposes
-- Reports publicly observable server behavior only
-- Should only be used on targets you are **authorized to scan**
 
 ---
 
