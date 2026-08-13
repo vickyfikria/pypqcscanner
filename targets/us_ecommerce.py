@@ -1,0 +1,186 @@
+"""
+targets/us_ecommerce.py
+25 top US e-commerce portals for PQC readiness scanning.
+Covers the largest US online retail and marketplace platforms.
+"""
+
+US_ECOMMERCE_TARGETS = [
+    {
+        "domain": "amazon.com",
+        "name": "Amazon",
+        "category": "E-Commerce",
+        "priority": "CRITICAL",
+        "description": "#1 US e-commerce — 200M+ Prime members, massive payment infrastructure",
+    },
+    {
+        "domain": "walmart.com",
+        "name": "Walmart",
+        "category": "E-Commerce",
+        "priority": "CRITICAL",
+        "description": "#2 US e-commerce — world's largest retailer by revenue",
+    },
+    {
+        "domain": "ebay.com",
+        "name": "eBay",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "Global online marketplace — 135M+ active buyers worldwide",
+    },
+    {
+        "domain": "target.com",
+        "name": "Target",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "Major US retailer — omnichannel retail with strong online presence",
+    },
+    {
+        "domain": "bestbuy.com",
+        "name": "Best Buy",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "US consumer electronics giant — online and in-store retail",
+    },
+    {
+        "domain": "costco.com",
+        "name": "Costco",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "Membership warehouse — 120M+ cardholders, large online presence",
+    },
+    {
+        "domain": "etsy.com",
+        "name": "Etsy",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "Handmade goods marketplace — 90M+ active buyers, seller financial data",
+    },
+    {
+        "domain": "wayfair.com",
+        "name": "Wayfair",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "US furniture and home goods e-commerce — $12B+ annual revenue",
+    },
+    {
+        "domain": "chewy.com",
+        "name": "Chewy",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Pet supplies e-commerce — 20M+ active customers",
+    },
+    {
+        "domain": "homedepot.com",
+        "name": "The Home Depot",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "Largest US home improvement retailer — strong e-commerce platform",
+    },
+    {
+        "domain": "lowes.com",
+        "name": "Lowe's",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Second largest US home improvement retailer",
+    },
+    {
+        "domain": "newegg.com",
+        "name": "Newegg",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Electronics and PC components marketplace — tech-savvy user base",
+    },
+    {
+        "domain": "macys.com",
+        "name": "Macy's",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Major US department store — digital-first transformation",
+    },
+    {
+        "domain": "nordstrom.com",
+        "name": "Nordstrom",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Premium US fashion retailer — loyalty program and financial data",
+    },
+    {
+        "domain": "zappos.com",
+        "name": "Zappos",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Amazon-owned footwear retailer — customer data and payment",
+    },
+    {
+        "domain": "kroger.com",
+        "name": "Kroger",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Largest US supermarket chain — grocery delivery and loyalty data",
+    },
+    {
+        "domain": "walgreens.com",
+        "name": "Walgreens",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "US pharmacy chain — medical and prescription PII",
+    },
+    {
+        "domain": "cvs.com",
+        "name": "CVS Health",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "US pharmacy and health services — HIPAA-sensitive health data",
+    },
+    {
+        "domain": "kohls.com",
+        "name": "Kohl's",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "US department store — rewards program data for millions",
+    },
+    {
+        "domain": "nike.com",
+        "name": "Nike",
+        "category": "E-Commerce",
+        "priority": "HIGH",
+        "description": "Global sports brand — Nike membership data, payment processing",
+    },
+    {
+        "domain": "apple.com",
+        "name": "Apple Store",
+        "category": "E-Commerce",
+        "priority": "CRITICAL",
+        "description": "Apple online store — payment and Apple ID data for billions",
+    },
+    {
+        "domain": "shopify.com",
+        "name": "Shopify",
+        "category": "E-Commerce Platform",
+        "priority": "CRITICAL",
+        "description": "Powers 4M+ merchant stores — payment and merchant data hub",
+    },
+    {
+        "domain": "instacart.com",
+        "name": "Instacart",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "On-demand grocery delivery — payment and location data",
+    },
+    {
+        "domain": "samsclub.com",
+        "name": "Sam's Club",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Walmart-owned warehouse club — membership and purchase data",
+    },
+    {
+        "domain": "gap.com",
+        "name": "Gap Inc.",
+        "category": "E-Commerce",
+        "priority": "MEDIUM",
+        "description": "Global apparel retailer — Gap, Old Navy, Banana Republic online",
+    },
+]
+
+TARGET_MAP  = {t["domain"]: t for t in US_ECOMMERCE_TARGETS}
+ALL_DOMAINS = [t["domain"] for t in US_ECOMMERCE_TARGETS]
