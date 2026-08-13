@@ -256,7 +256,7 @@ Both algorithms must be broken simultaneously to compromise the session. A quant
 
 | Metric | Result |
 |--------|--------|
-| PQC-Ready (PQC Hybrid detected) | **18 / 100 (18%)** |
+| PQC-Ready (🔵 PQC Hybrid detected) | **18 / 100 (18%)** |
 | Average PQC score | **40.4 / 100** |
 | TLS 1.3 adoption | ~76% of reachable |
 | HNDL Risk (CRITICAL) | 64 domains |
@@ -267,7 +267,7 @@ Both algorithms must be broken simultaneously to compromise the session. A quant
 
 | Metric | Result |
 |--------|--------|
-| PQC-Ready | **0 / 50 (0%)** |
+| 🔵 PQC-Ready | **0 / 50 (0%)** |
 | Average PQC score | **32.0 / 100** |
 | TLS 1.3 adoption | ~88% of reachable |
 | HNDL Risk (CRITICAL) | 40 domains |
@@ -278,7 +278,7 @@ Both algorithms must be broken simultaneously to compromise the session. A quant
 
 | Metric | Result |
 |--------|--------|
-| PQC-Ready | **0 / 50 (0%)** |
+| 🔵 PQC-Ready | **0 / 50 (0%)** |
 | Average PQC score | **~32 / 100** |
 | TLS 1.3 adoption | ~70% of reachable |
 | HNDL Risk (CRITICAL) | ~35 domains |
