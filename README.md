@@ -15,16 +15,32 @@ Currently supports **250 target portals** across 3 countries:
 - **FIPS 204 (ML-DSA)** — Digital Signatures, replaces RSA/ECDSA
 - **FIPS 205 (SLH-DSA)** — Hash-based Signatures
 
+## ⚠️ Ethical Use
+
+This scanner:
+- Uses **passive TLS inspection** only (no exploitation or fuzzing)
+- Makes standard **HTTPS HEAD requests** and raw **TLS ClientHello probes**
+- Is intended for **educational and research** purposes
+- Reports publicly observable server behavior only
+- Should only be used on targets you are **authorized to scan**
+
 ---
 
 ## 🚀 Quick Start
 
 ```bash
 # 1. Navigate into the project
+<<<<<<< HEAD
 cd pqc-us-scanner
 
 # 2. Activate the virtual environment
 source .venv314/bin/activate
+=======
+cd pypqcscanner
+
+# 2. Activate the virtual environment
+source .yourvenv/bin/activate
+>>>>>>> b674eb0e23cada0f524a733a3c209e5b2031e011
 
 # 3. Scan all 100 US portals (gov + ecommerce + tech)
 python main.py scan --country usa --all --no-nmap
@@ -330,14 +346,16 @@ with oqs.KeyEncapsulation("ML-KEM-768") as kem:
 
 ---
 
-## ⚠️ Ethical Use
 
+<<<<<<< HEAD
 This scanner:
 - Uses **passive TLS inspection** only (no exploitation or fuzzing)
 - Makes standard **HTTPS HEAD requests** and raw **TLS ClientHello probes**
 - Is intended for **educational and research** purposes
 - Reports publicly observable server behavior only
 - Should only be used on targets you are **authorized to scan**
+=======
+>>>>>>> b674eb0e23cada0f524a733a3c209e5b2031e011
 
 ---
 
