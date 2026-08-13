@@ -1,11 +1,19 @@
-# 🔐 Indonesia PQC Readiness Scanner
+# 🔐 PQC Readiness Scanner
 
-A Python-based **Post-Quantum Cryptography (PQC) readiness scanner** for Indonesian government websites (`.go.id` domains).
+A Python-based **Post-Quantum Cryptography (PQC) readiness scanner** for government websites (`.go.id` domains).
 
 Measures TLS cryptographic posture against NIST-standardized PQC algorithms:
 - **FIPS 203 (ML-KEM)** — Key Encapsulation, replaces RSA/ECDH
 - **FIPS 204 (ML-DSA)** — Digital Signatures, replaces RSA/ECDSA
 - **FIPS 205 (SLH-DSA)** — Hash-based Signatures
+  
+## ⚠️ Ethical Use
+
+This scanner:
+- Uses **passive TLS inspection** only (no exploitation)
+- Makes standard **HTTPS GET/HEAD requests**
+- Is intended for **educational and research** purposes
+- Should only be used on targets you are authorized to scan
 
 ---
 
@@ -13,7 +21,7 @@ Measures TLS cryptographic posture against NIST-standardized PQC algorithms:
 
 ```bash
 # 1. Clone / navigate into the project
-cd pqc-indonesia-scanner
+cd pypqscanner
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -43,7 +51,7 @@ open output/report.html
 ## 📂 Project Structure
 
 ```
-pqc-indonesia-scanner/
+pypqscanner/
 ├── main.py                    # CLI entrypoint (typer)
 ├── requirements.txt           # Dependencies
 ├── scanner/
