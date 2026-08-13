@@ -15,6 +15,54 @@ Currently supports **250 target portals** across 3 countries:
 - **FIPS 204 (ML-DSA)** — Digital Signatures, replaces RSA/ECDSA
 - **FIPS 205 (SLH-DSA)** — Hash-based Signatures
 
+---
+
+## ⭐ Key Feature: Raw-Socket PQC ClientHello Detection (`scanner/pqc_probe.py`)
+
+The most critical feature is the **raw-socket PQC prober** — the only correct method for detecting server-side PQC support.
+
+### Why Python's `ssl` module is insufficient
+
+Python's built-in `ssl` module never advertises PQC key exchange groups (`0x11ec`, `0x6399`) in its ClientHello. This means servers like **Cloudflare** and **Google** — which actively support `X25519MLKEM768` — silently fall back to classical X25519 without the scanner ever knowing they support PQC.
+
+### How `pqc_probe.py` works
+
+It crafts a **hand-built TLS 1.3 ClientHello** that:
+
+1. Advertises PQC groups in the `supported_groups` extension:
+   - `0x11ec` → `X25519MLKEM768` (FIPS 203, Chrome 131+, Cloudflare)
+   - `0x11eb` → `SecP256r1MLKEM768` (FIPS 203 alternative)
+   - `0x6399` → `X25519Kyber768Draft00` (Cloudflare legacy, Chrome 124–130)
+2. Includes a valid **X25519 key share** only (no dummy ML-KEM bytes — those cause TLS fatal alerts)
+3. Parses the raw **ServerHello** or **HelloRetryRequest** to detect the negotiated group
+
+```
+Your probe                              Server (e.g. Cloudflare)
+    │── ClientHello ──────────────────►  │
+    │   supported_groups:                │
+    │     [X25519MLKEM768, X25519, ...]  │
+    │                                    │
+    │  ◄──────────── ServerHello ──────  │
+    │   key_share: X25519MLKEM768 ✅     │
+    │                                    │
+    │  → pqc_detected = True             │
+    │  → pqc_group_name = X25519MLKEM768 │
+```
+
+### Standalone test
+
+```bash
+python -m scanner.pqc_probe cloudflare.com google.com amazon.com nist.gov
+
+# Output:
+# Domain                    PQC?   Group                 Classical fallback   ms
+# cloudflare.com            ✅ YES  X25519MLKEM768                             85ms
+# google.com                ✅ YES  X25519MLKEM768                             44ms
+# amazon.com                ✗  no                        X25519               534ms
+# nist.gov                  ✅ YES  X25519MLKEM768                             440ms
+```
+---
+
 ## ⚠️ Ethical Use
 
 This scanner:
@@ -167,52 +215,6 @@ python main.py report --input output/usa_report.json --output output/usa_report.
 ```
 
 ---
-
-## ⭐ Key Feature: Raw-Socket PQC ClientHello Detection (`scanner/pqc_probe.py`)
-
-The most critical feature is the **raw-socket PQC prober** — the only correct method for detecting server-side PQC support.
-
-### Why Python's `ssl` module is insufficient
-
-Python's built-in `ssl` module never advertises PQC key exchange groups (`0x11ec`, `0x6399`) in its ClientHello. This means servers like **Cloudflare** and **Google** — which actively support `X25519MLKEM768` — silently fall back to classical X25519 without the scanner ever knowing they support PQC.
-
-### How `pqc_probe.py` works
-
-It crafts a **hand-built TLS 1.3 ClientHello** that:
-
-1. Advertises PQC groups in the `supported_groups` extension:
-   - `0x11ec` → `X25519MLKEM768` (FIPS 203, Chrome 131+, Cloudflare)
-   - `0x11eb` → `SecP256r1MLKEM768` (FIPS 203 alternative)
-   - `0x6399` → `X25519Kyber768Draft00` (Cloudflare legacy, Chrome 124–130)
-2. Includes a valid **X25519 key share** only (no dummy ML-KEM bytes — those cause TLS fatal alerts)
-3. Parses the raw **ServerHello** or **HelloRetryRequest** to detect the negotiated group
-
-```
-Your probe                              Server (e.g. Cloudflare)
-    │── ClientHello ──────────────────►  │
-    │   supported_groups:                │
-    │     [X25519MLKEM768, X25519, ...]  │
-    │                                    │
-    │  ◄──────────── ServerHello ──────  │
-    │   key_share: X25519MLKEM768 ✅     │
-    │                                    │
-    │  → pqc_detected = True             │
-    │  → pqc_group_name = X25519MLKEM768 │
-```
-
-### Standalone test
-
-```bash
-python -m scanner.pqc_probe cloudflare.com google.com amazon.com nist.gov
-
-# Output:
-# Domain                    PQC?   Group                 Classical fallback   ms
-# cloudflare.com            ✅ YES  X25519MLKEM768                             85ms
-# google.com                ✅ YES  X25519MLKEM768                             44ms
-# amazon.com                ✗  no                        X25519               534ms
-# nist.gov                  ✅ YES  X25519MLKEM768                             440ms
-```
-
 ---
 
 ## 📊 PQC Scoring Rubric (0–100)
